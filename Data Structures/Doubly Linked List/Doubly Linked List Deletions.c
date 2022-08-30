@@ -94,18 +94,15 @@ void printList(struct Node* node)
     }
 }
 
-// Deleting a node at a given position
+// Deleting a node
 
-void del(struct Node** head, int position)
+void delete(struct Node** head, struct Node* del)
 {
-    int i = 0;
-    struct Node* del = *head;
-    while (i < position){
-        del = del->next;
-        i++;
+    if (*head == NULL || del == NULL){
+        return;
     }
-    if (del == *head){
-        *head = del->next;
+    if (*head == del){
+        *head = del -> next;
     }
     if (del->next != NULL){
         del->next->prev = del->prev;
@@ -128,7 +125,7 @@ int main()
 
     printList(head); // Checking if list is correct
 
-    del(&head, 1);
+    delete(&head, head->next);
 
     printList(head); // Checking if list is correct
 
