@@ -12,30 +12,32 @@ struct Node
     struct Node* right;
 };
 
-// Inserting a node into a Binary Search Tree (BST)
-
-struct Node* insert(struct Node** root, int data)
+// A utility function to create a new BST node
+struct Node* newNode(int item)
 {
     struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-
-    temp -> data = data;
-    temp -> left = NULL;
-    temp -> right = NULL;
-
-    // when tree is empty
-
-    if ((*root)==NULL){
-        *root = temp;
-        return *root;
-    }
-    else if (data <= (*root)->data){
-        (*root)->left = insert(&((*root)->left), data);
-    }
-    else {
-        (*root)->right = insert(&((*root)->right), data);
-    }
+    temp->data = item;
+    temp->left = temp->right = NULL;
+    return temp;
 }
 
+// Inserting a node into a Binary Search Tree (BST)
+
+struct Node* insert(struct Node* node, int key)
+{
+    /* If the tree is empty, return a new node */
+    if (node == NULL)
+        return newNode(key);
+
+    /* Otherwise, recur down the tree */
+    if (key < node->data)
+        node->left = insert(node->left, key);
+    else if (key > node->data)
+        node->right = insert(node->right, key);
+
+    /* return the (unchanged) node pointer */
+    return node;
+}
 // Searching whether an element is in the BST
 
 bool search(struct Node** root, int data)
@@ -57,24 +59,23 @@ bool search(struct Node** root, int data)
 int main()
 {
     struct Node* root = NULL;
-    insert(&root, 5);
-    insert(&root, 10);
-    insert(&root, 3);
+    root = insert(root, 11);
+    insert(root, 20);
+    insert(root, 3);
+    insert(root, 42);
+    insert(root, 54);
+    insert(root, 16);
+    insert(root, 32);
+    insert(root, 9);
+    insert(root, 4);
+    insert(root, 10);
 
     // Checking if one of the above element is in the tree
-    int exist = 5;
-    int missing = 4;
-    if (search(&root, exist)){
-        printf("There is the number %d in the tree\n", exist);
+    int number = 20;
+    if (search(&root, number)){
+        printf("There is the number %d in the tree\n", number);
     }
     else {
-        printf("Error detected with searching function!");
-    }
-
-    if (!search(&root, missing)){
-        printf("There is no number %d in the tree\n", missing);
-    }
-    else {
-        printf("Error detected with searching function!");
+        printf("The number %d doesn't exist in the tree\n", number);
     }
 }
