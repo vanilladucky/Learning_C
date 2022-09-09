@@ -17,8 +17,6 @@ struct Node
 struct Node* insert(struct Node** root, int data)
 {
     struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* current;
-    struct Node* parent;
 
     temp -> data = data;
     temp -> left = NULL;
