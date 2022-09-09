@@ -34,8 +34,6 @@ struct Node* insert(struct Node** root, int data)
     else {
         (*root)->right = insert(&((*root)->right), data);
     }
-
-    return *root;
 }
 
 // Searching whether an element is in the BST
