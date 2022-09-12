@@ -16,20 +16,25 @@ struct Node
     struct Node* right;
 };
 
+struct Node* newNode(int data)
+{
+    struct Node* node
+        = (struct Node*)malloc(sizeof(struct Node));
+    node->data = data;
+    node->left = NULL;
+    node->right = NULL;
+
+    return (node);
+}
+
 // Inserting a node into a Binary Search Tree (BST)
 
 struct Node* insert(struct Node** root, int data)
 {
-    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-
-    temp -> data = data;
-    temp -> left = NULL;
-    temp -> right = NULL;
-
     // when tree is empty
 
     if ((*root)==NULL){ // Will always reach this if statement
-        *root = temp;
+        *root = newNode(data);
         return *root;
     }
     else if (data <= (*root)->data){
@@ -38,16 +43,27 @@ struct Node* insert(struct Node** root, int data)
     else {
         (*root)->right = insert(&((*root)->right), data);
     }
+
+    return *root;
 }
 
 // Finding height of binary tree
 
-int FindHeight(struct Node* root)
+int height(struct Node* node)
 {
-    if (root == NULL){
+    if (node == NULL)
         return 0;
+    else {
+        /* compute the height of each subtree */
+        int lheight = height(node->left);
+        int rheight = height(node->right);
+
+        /* use the larger one */
+        if (lheight > rheight)
+            return (lheight + 1);
+        else
+            return (rheight + 1);
     }
-    return max(FindHeight(root->left), FindHeight(root->right))+1;
 }
 
 int main()
@@ -67,7 +83,7 @@ int main()
          /  \    /  \
        20   40  60   80 */
 
-    printf("The height of this BST is %d\n", FindHeight(root));
+    printf("The height of this BST is %d\n", height(root));
 
     return 0;
 }
