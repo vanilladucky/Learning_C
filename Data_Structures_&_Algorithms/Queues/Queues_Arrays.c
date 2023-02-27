@@ -18,7 +18,7 @@ void Enqueue(int val){
         printf("The queue is full!");
     }
     else{
-        queue[rear] = val;s
+        queue[rear] = val;
     }
 }
 
