@@ -42,4 +42,10 @@ our matrix in this representation would waste a lot of memory.
 Adjacency List
 --------------
 
+Adjacency List eliminates the problem of sparse matrix.
+We will only store the connections for every vertex.
+
+Vertex A - B, D, E
+
+This would save a lot of memory compared to the Adjacency Matrix.
 */
