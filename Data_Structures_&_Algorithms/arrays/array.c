@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+// first compile by typing in make file_name
+// and then execute the file by typing ./filename
+
 int main(){
     int arr[5];
     int i;
