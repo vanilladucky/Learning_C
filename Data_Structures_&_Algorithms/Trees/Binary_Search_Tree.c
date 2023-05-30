@@ -95,6 +95,17 @@ Inorder traversal would give us back the sorted binary tree in a list
 
 */
 
+// Inorder Traversal Implementation
+void InOrderTraversal(node* root) {
+    if (root == NULL) {
+        return; 
+    }
+    InOrderTraversal(root->left);
+    printf("%d->", root->data);    
+    InOrderTraversal(root->right);
+    return;
+}
+
 
 
 
@@ -103,6 +114,9 @@ int main(){
     Insert(&root, 15); // Since the root is a local variable
     Insert(&root, 10);
     Insert(&root, 5);
+    Insert(&root, 20);
+    Insert(&root, 2);
+    Insert(&root, 67);
 
     if (Search(root, 9)){
         printf("Number found\n");
@@ -114,4 +128,7 @@ int main(){
     printf("The minimum values of the BST is %d\n", Findmin(root));
 
     printf("The height of the binary tree is %d\n", FindHeight(root));
+
+    printf("The Inorder Traversal of the binary tree is ");
+    InOrderTraversal(root);
 }

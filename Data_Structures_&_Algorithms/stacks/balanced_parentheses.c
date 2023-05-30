@@ -44,22 +44,18 @@ int check(char paran[], int length){
         }
         else if (paran[i] == ')' || paran[i] == '}' || paran[i] == ']'){
             if (IsEmpty(top) == 0){
-                printf("%d", 1);
                 printf("Incorrect");
                 return 0;
             }
-            else if (paran[i] == ')' && paran[top] != '('){
-                printf("%d", 2);
+            else if (paran[i] == ')' && stack[top] != '('){
                 printf("Incorrect");
                 return 0;
             }
-            else if (paran[i] == '}' && paran[top] != '{'){
-                printf("%d", 3);
+            else if (paran[i] == '}' && stack[top] != '{'){
                 printf("Incorrect");
                 return 0;
             }
-            else if (paran[i] == ']' && paran[top] != '['){
-                printf("%c", paran[top]);
+            else if (paran[i] == ']' && stack[top] != '['){
                 printf("Incorrect");
                 return 0;
             }
@@ -77,6 +73,6 @@ int check(char paran[], int length){
 }
 
 int main(){
-    char paran[] = "()[]{}";
+    char paran[] = "[][]{}";
     check(paran, strlen(paran));
 }

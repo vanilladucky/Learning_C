@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /*
-    In this case, we would need to utilize multi-dimensioal array which would require pointers to pointers 
+    In this case, we would need to utilize multi-dimensional array which would require pointers to pointers 
 */
 
 int main(){

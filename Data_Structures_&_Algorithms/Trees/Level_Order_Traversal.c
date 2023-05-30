@@ -30,10 +30,8 @@ void Enqueue(node** queue, int* rear, node* new_node){
 
 node* Dequeue(node** queue, int *front){
     (*front)++;
-    return queue[*front-1];
+    return queue[(*front)-1];
 }
-
-
 // Finished Implementation of Queue
 
 

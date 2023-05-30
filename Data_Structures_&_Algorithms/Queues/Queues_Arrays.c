@@ -12,7 +12,7 @@ void Enqueue(int val){
         front = 0;
     }
 
-    rear = (rear+1)%MAX_SIZE;
+    rear = (rear+1)%MAX_SIZE; /* Circular Queue */
     
     if (rear == front){
         printf("The queue is full!");

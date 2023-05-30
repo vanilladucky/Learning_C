@@ -27,8 +27,8 @@ void push(int x, int *top, int (*A)[]){
         printf("Error: stack-overflow");
         return;
     }
-    *top = *top + 1;
-    (*A)[*top] = x;
+    //*top = *top + 1;
+    (*A)[++(*top)] = x;
 } 
 
 void pop(int *top){

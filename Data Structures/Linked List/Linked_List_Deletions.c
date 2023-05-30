@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <stdlib.h>
 
 // About Linked List and its operations
 
@@ -38,10 +39,10 @@ void push(struct Node** head_ref, int value) // Double pointer (It is a very imp
 
 // Appending at the end
 
-void append(struct Node** head_ref, int value)
+void append(struct Node* head_ref, int value)
 {
     struct Node* temp_node = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* temp = *head_ref; // Creating a temporary pointer to be used for traversing later on
+    struct Node* temp = head_ref; // Creating a temporary pointer to be used for traversing later on
 
     temp_node -> data = value;
     temp_node -> next = NULL;
@@ -121,7 +122,7 @@ void del(struct Node** head_ref, int index)
     printf("Index %d is out of range", index);
 
     end:
-    return 0;
+    return;
 }
 
 int main()
@@ -129,7 +130,7 @@ int main()
     struct Node* head = NULL;
     push(&head, 5); // Inserting 5 at the beginning of the linked list
     push(&head, 30);
-    append(&head, 50);
+    append(head, 50);
     insert(&head, 40, 1);
 
     printList(head); // Checking whether it worked; should give us 30 -> 40 -> 5 -> 50 -> NULL

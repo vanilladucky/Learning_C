@@ -23,6 +23,26 @@ typedef struct node{
     struct node *right;
 }node;
 
+node* getnewnode(int data){// Function to make a new node using malloc on stack
+    node* newnode = (node*)malloc(sizeof(node));
+    newnode->data = data;
+    newnode->left = NULL;
+    newnode->right = NULL;
+    return newnode;
+}
+
+void Insert(node** root, int data){
+    if (*root == NULL){
+        *root = getnewnode(data);
+    }
+    else if (data <= (*root)->data){
+        Insert(&((*root)->left), data);
+    }
+    else{
+        Insert(&((*root)->right), data);
+    }
+}
+
 node* FindMin(node *nd){
     if (nd->left==NULL){
         return nd;
@@ -30,7 +50,7 @@ node* FindMin(node *nd){
     return FindMin(nd->left);
 }
 
-node* Delete(node *root, int data){ // will pass in address of the root node along with the data to be deleted
+node* Delete(node *root, int data){ // will pass in address of the root node along with the data to be deleted 
     if (root==NULL) return root;
     else if (data < root->data) root->left = Delete(root->left, data);
     else if (data > root->data) root->right = Delete(root->right, data);
@@ -71,36 +91,17 @@ void InOrder(node *root){
 }
 
 int main(){
-    node *root = (node*)malloc(sizeof(node));
-    root->data = 12;
-
-    root->left = (node*)malloc(sizeof(node));
-    root->left->data = 5;
-
-    root->right = (node*)malloc(sizeof(node));
-    root->right->data = 15;
-
-    root->left->left = (node*)malloc(sizeof(node));
-    root->left->left->data = 3;
-
-    root->left->right = (node*)malloc(sizeof(node));
-    root->left->right->data = 7;
-
-    root->left->left->left = (node*)malloc(sizeof(node));
-    root->left->left->left->data = 1;
-
-    root->left->right->right = (node*)malloc(sizeof(node));
-    root->left->right->right->data = 9;
-
-    root->right->left = (node*)malloc(sizeof(node));
-    root->right->left->data = 13;
-
-    root->right->right = (node*)malloc(sizeof(node));
-    root->right->right->data = 17;
+    node* root = NULL;
+    Insert(&root, 15); // Since the root is a local variable
+    Insert(&root, 10);
+    Insert(&root, 5);
+    Insert(&root, 20);
+    Insert(&root, 2);
+    Insert(&root, 67);
 
     InOrder(root);
 
-    root = Delete(root, 13);
+    root = Delete(root, 20);
     printf("\n");
     InOrder(root);
 }

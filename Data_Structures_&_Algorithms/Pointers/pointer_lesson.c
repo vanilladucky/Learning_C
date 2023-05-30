@@ -1,9 +1,10 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
-typedef struct {
-        int a;
-        int b;
-    } coor;
+typedef struct
+{
+    int a;
+    int b;
+} coor;
 
 int main()
 {
@@ -15,6 +16,6 @@ int main()
 }
 
 /*
-    malloc will dynamically allocate the amount of size as requested 
+    malloc will dynamically allocate the amount of size as requested
     it will return a POINTER of the type (coor in this case)
 */
